@@ -8,7 +8,11 @@ MainAuthRouter.route('/register')
     .post((req, res) => {
         res.send('Post Main Auth Router')
     })
-    
+
+MainAuthRouter.route('/login')
+    .get((req,res) => {
+        res.render('login')
+    })
 
 // MainAuthRouter.get('/', (req, res) => {
 //     res.send('Main Auth Router')
