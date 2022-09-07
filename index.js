@@ -13,6 +13,11 @@ app.set('view engine', 'ejs')
 // update the location of the views folder that res.render uses
 app.set('views', path.join(__dirname, 'src/templates/views'))
 
+// Need this middleware so that the form data is added to request
+// takes form data and adds to request under {body}
+// we want to take this data and send to our database and create a new user
+app.use(express.urlencoded({ extended: true }))
+
 // Initialize routes
 // initRoutes is equal to the function in index.js under routes
 const initRoutes = require('./src/routes')

@@ -3,9 +3,7 @@ const MainAuthRouter =  require('express').Router()
 // using .route makes it to where you can add each (.get, .post, .put, .delete method under one route)
 MainAuthRouter.route('/register')
     .get(require('./register.view'))
-    .post((req, res) => {
-        res.send('Post Main Auth Router')
-    })
+    .post(require('./register'))
 
 MainAuthRouter.route('/login')
     .get(require('./login.view'))
