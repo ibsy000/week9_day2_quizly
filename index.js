@@ -1,7 +1,12 @@
+const dotenv = require('dotenv')
 const express = require('express') // require runs this 'express' module, which ulitimately creates a new application
-const app = express()
-const port = 3000
 const path = require('path')
+const { connectDB } = require('./src/db')
+
+
+dotenv.config() // Loads .env file contents into process.env.
+const app = express()
+connectDB()
 
 app.get('/', (req, res) => {
     res.send('Hello World')
@@ -25,6 +30,6 @@ initRoutes(app)
 
 
 // Binds and listens for connections on the specified host and port
-app.listen(port, () => {
-    console.log(`Server is now running on port ${port}`)
+app.listen(process.env.PORT, () => {
+    console.log(`Server is now running on process.env.PORT ${process.env.PORT}`)
 })
