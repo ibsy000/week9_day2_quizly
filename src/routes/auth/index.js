@@ -8,6 +8,9 @@ MainAuthRouter.route('/register')
 MainAuthRouter.route('/login')
     .get(require('./login.view'))
 
+MainAuthRouter.route('/logout')
+    .get(require('./logout'))
+
 // MainAuthRouter.get('/', (req, res) => {
 //     res.send('Main Auth Router')
 // })
