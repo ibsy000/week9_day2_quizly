@@ -2,11 +2,18 @@ const dotenv = require('dotenv')
 const express = require('express') // require runs this 'express' module, which ulitimately creates a new application
 const path = require('path')
 const { connectDB } = require('./src/db')
+const { graphqlHTTP } = require('express-graphql')
+const schema = require('./src/graphql/schema')
 
 
 dotenv.config() // Loads .env file contents into process.env.
 const app = express()
 connectDB()
+
+app.use('/graphql', graphqlHTTP({
+    schema,
+    graphiql: true
+}))
 
 app.get('/', (req, res) => {
     res.send('Hello World')
