@@ -21,9 +21,6 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }))
 
-app.get('/', (req, res) => {
-    res.send('Hello World')
-})
 
 // Set the view engine to ejs (install ejs package) => npm i ejs
 app.set('view engine', 'ejs')
@@ -35,6 +32,10 @@ app.set('views', path.join(__dirname, 'src/templates/views'))
 // takes form data and adds to request under {body}
 // we want to take this data and send to our database and create a new user
 app.use(express.urlencoded({ extended: true }))
+
+app.get('/', (req, res) => {
+    res.render('dashboard')
+})
 
 // Initialize routes
 // initRoutes is equal to the function in index.js under routes
