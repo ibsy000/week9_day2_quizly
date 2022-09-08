@@ -5,6 +5,7 @@ const { connectDB } = require('./src/db')
 const { graphqlHTTP } = require('express-graphql')
 const schema = require('./src/graphql/schema')
 const cookieParser = require('cookie-parser')
+const { authenticate } = require('./src/middleware/auth')
 
 
 dotenv.config() // Loads .env file contents into process.env.
@@ -12,6 +13,8 @@ const app = express()
 connectDB()
 
 app.use(cookieParser())
+
+app.use(authenticate) // we want this after the cookieParser
 
 app.use('/graphql', graphqlHTTP({
     schema,
