@@ -1,5 +1,5 @@
 // Import built-in graphql type
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList} = require('graphql')
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLInputObjectType} = require('graphql')
 const { User, Quiz } = require('../models')
 
 const UserType = new GraphQLObjectType(
@@ -35,7 +35,7 @@ const QuizType = new GraphQLObjectType(
             user: {
                 type: UserType,
                 resolve(parent, args){
-                    return User.findById(parent.userID)
+                    return User.findById(parent.userId)
                 }
             }
         })
@@ -67,7 +67,7 @@ const QuestionType = new GraphQLObjectType(
 
 
 // Create a Question Input Type = for mutation of creating Quizzes
-const QuestionInputType = new GraphQLObjectType(
+const QuestionInputType = new GraphQLInputObjectType(
     {
         name: 'QuestionInput',
         description: 'Question INput Type',
