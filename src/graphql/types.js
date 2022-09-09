@@ -37,6 +37,12 @@ const QuizType = new GraphQLObjectType(
                 resolve(parent, args){
                     return User.findById(parent.userId)
                 }
+            },
+            questions: {
+                type: GraphQLList(QuestionType),
+                resolve(parent, args){
+                    return Question.find({ quizId: parent.id })
+                }
             }
         })
     }
@@ -60,13 +66,8 @@ const QuestionType = new GraphQLObjectType(
                 resolve(parent, args){
                     return Quiz.findById(parent.quizId)
                 }
-            },
-            questions: {
-                type: GraphQLList(QuestionType),
-                resolve(parent, args){
-                    return Question.find({ quizId: parent.id })
-                }
             }
+            
         })
     }
 )
