@@ -37,9 +37,9 @@ app.set('views', path.join(__dirname, 'src/templates/views'))
 // we want to take this data and send to our database and create a new user
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req, res) => {
-    res.render('dashboard')
-})
+// app.get('/', (req, res) => {       // no longer need this
+//     res.render('dashboard')
+// })
 
 // Initialize routes
 // initRoutes is equal to the function in index.js under routes
