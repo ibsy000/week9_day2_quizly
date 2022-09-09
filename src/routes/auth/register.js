@@ -1,5 +1,6 @@
 // const { User } = require('../../models') // no longer need user model
 const axios = require('axios')
+const bcrypt = require('bcrypt')
 
 module.exports = async (req, res) => {
     if (req.body.password !== req.body.confirmPass){
@@ -12,6 +13,8 @@ module.exports = async (req, res) => {
             register( email: $email, username: $username, password: $password)
         }
         `
+
+        // Make a POST request to GraphQL with a request body with the query and variable from the request
         const { data } = await axios.post(process.env.GRAPHQL_ENDPOINT, 
             {
                 query: mutation,

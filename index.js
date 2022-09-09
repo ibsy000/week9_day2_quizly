@@ -45,5 +45,5 @@ initRoutes(app)
 
 // Binds and listens for connections on the specified host and port
 app.listen(process.env.PORT, () => {
-    console.log(`Server is now running on process.env.PORT ${process.env.PORT}`)
+    console.log(`Server is now running on ${process.env.PORT}`)
 })
