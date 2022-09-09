@@ -1,6 +1,6 @@
 // Import built-in graphql type
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLInt, GraphQLList, GraphQLInputObjectType} = require('graphql')
-const { User, Quiz } = require('../models')
+const { User, Quiz, Question  } = require('../models')
 
 const UserType = new GraphQLObjectType(
     {
@@ -59,6 +59,12 @@ const QuestionType = new GraphQLObjectType(
                 type: QuizType,
                 resolve(parent, args){
                     return Quiz.findById(parent.quizId)
+                }
+            },
+            questions: {
+                type: GraphQLList(QuestionType),
+                resolve(parent, args){
+                    return Question.find({ quizId: parent.id })
                 }
             }
         })
